@@ -30,7 +30,7 @@ app.post("/api", (req, res) => {
   };
 //   For the callback function, I just intialized a variable as the data and congole logged it. Follow the link of the logged data and it should bring you to a picure of what you searched for on the frontend. 
   const callback = (data) => {
-    const IMAGE = data["images_results"][0]["original"];
+    const IMAGE = data["images_results"][2]["original"];
     console.log(IMAGE);
   };
   search.json(params, callback);
