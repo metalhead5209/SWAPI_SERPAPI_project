@@ -7,6 +7,9 @@ const charSearch = async (char) => {
   char = input.value;
   try {
     // queries the Star Wars API which returns an object populated with the query data
+    await Promise.allSettled([fetch(`${link}${char}`), ])
+
+
     await fetch(`${link}${char}`)
       .then((res) => res.json())
       .then((data) => {
@@ -24,13 +27,13 @@ const charSearch = async (char) => {
           },
           body: JSON.stringify(obj),
         })
-        // Sends back confirmation when data is received on backend.
+          // Sends back confirmation when data is received on backend.
           .then((r) => r.json())
           .then((res) => console.log(res));
         console.log(obj);
       });
   } catch (error) {
-    console.error(error, "oops, try again!");
+    console.error(error, "I find your lack of SW knowledge disturbing");
   }
 };
 
@@ -42,3 +45,10 @@ btn.addEventListener("click", () => {
     charSearch();
   }
 });
+
+let postParams = {
+  method: 'POST',
+  headers: {
+    'Content-type': 'application/json',
+  }
+}
