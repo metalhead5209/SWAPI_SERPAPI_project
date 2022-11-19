@@ -7,7 +7,6 @@ const charSearch = async (char) => {
   char = input.value;
   try {
     // queries the Star Wars API which returns an object populated with the query data
-    await Promise.allSettled([fetch(`${link}${char}`), ])
 
 
     await fetch(`${link}${char}`)
@@ -36,6 +35,7 @@ const charSearch = async (char) => {
     console.error(error, "I find your lack of SW knowledge disturbing");
   }
 };
+
 
 btn.addEventListener("click", () => {
   // if the input is an empty string or less than 3 characters, alert

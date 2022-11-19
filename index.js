@@ -3,6 +3,8 @@ require("dotenv").config();
 const app = express();
 const key = process.env.API_KEY;
 
+const TOY_VAULT = [];
+
 // imports SerpApi
 const SerpApi = require("google-search-results-nodejs");
 const search = new SerpApi.GoogleSearch(key);
@@ -30,14 +32,17 @@ app.post("/api", (req, res) => {
   };
   //   For the callback function, I just intialized a variable as the data and congole logged it. Follow the link of the logged data and it should bring you to a picure of what you searched for on the frontend.
   const callback = (data) => {
-    const IMAGE = data["images_results"][2]["original"];
+    const IMAGE = data["images_results"][1]["original"];
+    TOY_VAULT.push(IMAGE)
     console.log(IMAGE);
+    console.log(TOY_VAULT);
   };
   search.json(params, callback);
   res.json({
     message: "ITS A TRAP",
   });
 });
+
 
 app.listen(PORT, () => {
   console.log("On port 3000");
