@@ -34,10 +34,17 @@ const charSearch = async (char) => {
   } catch (error) {
     console.error(error, "I find your lack of SW knowledge disturbing");
   }
+  input.value = "";
+
+  setTimeout(() => {
+    location.reload()
+  }, 1000)
+ 
 };
 
 
-btn.addEventListener("click", () => {
+
+btn.addEventListener("click",  () => {
   // if the input is an empty string or less than 3 characters, alert
   if (input.value == "" || input.selectionEnd < 3) {
     alert("Please Enter Name");
@@ -46,9 +53,3 @@ btn.addEventListener("click", () => {
   }
 });
 
-let postParams = {
-  method: 'POST',
-  headers: {
-    'Content-type': 'application/json',
-  }
-}

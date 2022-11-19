@@ -5,3 +5,19 @@ h1 {
 html {
   background-color: black;
 }
+
+p {
+  color: white;
+}
+
+#imgs {
+  width: 10em;
+  height: 12em;
+  margin: 10px;
+}
+
+.img-div {
+  width: 10px;
+  display: inline;
+  overflow: normal;
+}

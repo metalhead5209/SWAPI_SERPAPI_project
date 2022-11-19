@@ -1,21 +1,34 @@
 const express = require("express");
+const handleBars = require('express-handlebars');
+const bodyParser = require('body-parser');
+
+const DB = []
+
+
 require("dotenv").config();
 const app = express();
 const key = process.env.API_KEY;
+const PORT = process.env.PORT;
 
-const TOY_VAULT = [];
+
+// Template Engine
+app.engine("hbs", handleBars.engine({ extname: ".hbs" }));
+app.set("view engine", "hbs");
+
 
 // imports SerpApi
 const SerpApi = require("google-search-results-nodejs");
 const search = new SerpApi.GoogleSearch(key);
 
-const PORT = process.env.PORT;
-
+// Middleware
+app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.json());
 app.use(express.json());
-app.use(express.static(__dirname + "/public"));
+app.use(express.static("public"));
 
 app.get("/", (req, res) => {
-  res.sendFile("index.html", { root: __dirname });
+
+  res.render("index", {DB});
 });
 
 app.post("/api", (req, res) => {
@@ -32,16 +45,21 @@ app.post("/api", (req, res) => {
   };
   //   For the callback function, I just intialized a variable as the data and congole logged it. Follow the link of the logged data and it should bring you to a picure of what you searched for on the frontend.
   const callback = (data) => {
-    const IMAGE = data["images_results"][1]["original"];
-    TOY_VAULT.push(IMAGE)
+    const IMAGE = {
+      id: Math.floor(Math.random() * 200) +1,
+      url: data["images_results"][Math.floor(Math.random() * 20)]["original"]
+    }; 
     console.log(IMAGE);
-    console.log(TOY_VAULT);
+    DB.push(IMAGE)
+    console.log(DB)
+    
   };
   search.json(params, callback);
   res.json({
     message: "ITS A TRAP",
   });
 });
+
 
 
 app.listen(PORT, () => {
