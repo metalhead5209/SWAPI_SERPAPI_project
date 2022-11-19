@@ -16,7 +16,7 @@ p {
   margin: 10px;
 }
 
-.img-div {
+#img-div {
   width: 10px;
   display: inline;
   overflow: normal;
