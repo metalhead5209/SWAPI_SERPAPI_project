@@ -21,3 +21,7 @@ p {
   display: inline;
   overflow: normal;
 }
+
+label {
+  color: white;
+}
