@@ -14,9 +14,7 @@ const charSearch = async (char) => {
         // console logs just the name of the queried result
         console.log(data.results[0].name);
         // initializes an object with the result of your query as the value.
-        let obj = {
-          name: data.results[0].name,
-        };
+        let obj = data
 
         // Uses fetch to post the object we just created using the fetched Star Wars data to the backend with a /api endpoint
         await fetch("/api", {
