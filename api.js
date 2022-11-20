@@ -28,7 +28,7 @@ app.get("/", (req, res) => {
 
 app.post("/api", (req, res) => {
 
-  console.log(req.body);
+  // console.log(req.body);
   
   //  SerpApi takes in two arguments. Fist are the parameters of your search criteria eg. q: query, tbm: data type, safe: safe search.
   // The second argument is the callback function which is where you define what to do with that data.
@@ -60,7 +60,13 @@ app.post("/api", (req, res) => {
   //   DB.push(IMAGE);  
   // };
   // search.json(params, callback);
-  
+
+  /* Temp logic while SerpApi has reached req limit. Returns deconstructed data from char object */
+  let data = req.body.results[0];
+    const { name, species, gender, birth_year } = data;
+
+  console.log(`My name is ${name}, I am a ${gender}${species} born in ${birth_year}`)
+  DB.push(data)
   
   res.json({
     message: "Hello There",

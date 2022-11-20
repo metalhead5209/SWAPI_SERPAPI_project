@@ -28,11 +28,11 @@ const charSearch = async (char) => {
           .then((r) => r.json())
           .then((res) => console.log(res));
         console.log(obj);
-        // if(data) {
-        //   setTimeout(() => {
-        //   location.reload();
-        // }, 1000);
-        // }
+        if(data) {
+          setTimeout(() => {
+          location.reload();
+        }, 100);
+        }
         
       });
   } catch (error) {
