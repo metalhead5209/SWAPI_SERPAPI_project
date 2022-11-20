@@ -51,7 +51,7 @@ app.post("/api", (req, res) => {
   };
   search.json(params, callback);
   res.json({
-    message: "ITS A TRAP",
+    message: "Hello There",
   });
 });
 
